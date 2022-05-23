@@ -1,0 +1,14 @@
+# Under PostNode.java (new class added v1.1)
+- Uses Linked-list data structure to create a list of confession post.
+- Used under Iteration.java to simulate iteration of the linked-list with the iteration of the tree.
+- TLDR: just want to see if the program can work or not when combining the use of linked-list and tree - guess what? it kinda works!
+
+# Under Iteration.java (updated v1.1)
+Added new methods:
+getSet2() - new TreeNode object
+showAllReplies() - print all replies under a post 
+showOnlyRepliesTo() - print the only replies to a post given the post id
+
+PostNode<TreeNode> post = new PostNode<>();             //Create a node for a post where the post is a root to a tree root
+          TreeNode<ConfessionPost> root1 = getSet1();   //Create a parent/root node(post) that has all the children node(replies) 
+          post.add(root1);                              //add the root node to the post node, where it can create a list of node/post(linked-list)
