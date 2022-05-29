@@ -1,8 +1,13 @@
 NEW VERSION 1.2
 
+- Now Confession Post is now saved inside a tree data structure instead of using both Tree and DoublyLinkedList because it's easier and iteration use much less complicated codes. Maybe avoid wasting unused data.
+- Doubly Linked List is used when viewing the posts. So that can iterate forward and backward.
+- Generic Stack and Generic Queue are used to fix a bug(when going up a post in a tree(checking the parent node) after going down from a parent node, the program didn't remember the which parent is in the current iteration just before going down from a parent node).
+
 #Renamed class
 TreeNode.java     ---> ReplyNode.java
 TreeNodeIter.java ---> ReplyNodeIter.java
+
 #new class 
 DoublyLinkedList.java
 GenericQueue.java
@@ -15,7 +20,7 @@ Tester2.java   ----- View Published / Reply Confession Posts
 VERSION 1.1
 
 # Under PostNode.java (new class added v1.1)
-- Uses Linked-list data structure to create a list of confession post.
+- Uses Linked list data structure to create a list of confession post.
 - Used under Iteration.java to simulate iteration of the linked-list with the iteration of the tree.
 - TLDR: just want to see if the program can work or not when combining the use of linked-list and tree - guess what? it kinda works!
 
