@@ -1,0 +1,77 @@
+.parent{
+    -fx-background-color: transparent;
+}
+
+.pane{
+    -fx-background-color: #00008B;
+
+}
+
+
+.trans-btn-transparent-border{
+    -fx-background-color: transparent;
+    -fx-background-radius: 5px;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 5px;
+    -fx-border-width: 1px;
+    -fx-text-fill: whitesmoke;
+}
+
+.trans-btn-transparent{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.white-pane{
+    -fx-background-color: #ffffff;
+}
+
+.blue-panel{
+    -fx-background-color: #0090ff;
+    -fx-background-radius: 5px;
+}
+
+.tf_box{
+    -fx-background-color: transparent;
+    -fx-border-color: #DEDEE4;
+    -fx-border-width: 0px 0px 1px 0px;
+}
+
+.tf{
+    -fx-background-color: transparent;
+}
+
+.blue-btn{
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 5px;
+    -fx-text-fill: #fffff;
+}
+
+.side-panel{
+     -fx-background-color: #1e33d7;
+     -fx-background-radius: 5px;
+}
+
+.top-panel{
+     -fx-background-color: #0090ff;
+     -fx-background-radius: 5px;
+}
+
+.top-panel1{
+     -fx-background-color: #9e9999;
+     -fx-background-radius: 5px;
+}
+.tf_box1{
+    -fx-background-color: semi-transparent;
+    -fx-border-width: 0px 0px 1px 0px;
+}
+
+.right-blue-panel{
+     -fx-background-color: #1e33d7;
+     -fx-background-radius: 5px;
+}
+
+.circle{
+    -fx-background-color:#ffffff;
+    -fx-background-radius: 20;
+}
