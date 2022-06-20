@@ -33,24 +33,28 @@ public class RegisterAccount {
     
     public void register(String username, String password){
         Account acc = new Account(username,password);
-        if(AccountList != null){
         Account accountInfo = (Account)AccountList.returnCurrentPost();
+        Boolean userDup = false;
         while(accountInfo != null){
             if(accountInfo.getUserName().equals(username)){
-                System.out.println("Username already exist");
+                System.out.println("Username already existed. Try again!");
+                userDup = true;
             }
+            AccountList.nextPost();
+            accountInfo = AccountList.returnCurrentPost();
         }
+        if(!userDup){
+            append(acc);
         }
-        append(acc);
     }
     
     public void append(Account acc){
         try{
         // Creates a FileWriter
-        FileWriter fileName = new FileWriter("AccountList.txt");
+        FileWriter fileName = new FileWriter("AccountList.txt",true);
         // Creates a BufferedWriter
         BufferedWriter  bw = new BufferedWriter(fileName);
-                bw.append(acc.toString());
+                bw.append(acc.toString()+"\n");
         bw.close();
     }catch(Exception e){
         System.out.print("An error occured try again ");
@@ -64,6 +68,8 @@ public class RegisterAccount {
             if(accountInfo.getUserID().equals(userID)){
                 return userID;
             }
+            AccountList.nextPost();
+            accountInfo = AccountList.returnCurrentPost();
         }
         }return null;
     }
