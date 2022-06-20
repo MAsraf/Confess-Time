@@ -6,7 +6,8 @@ package Test;
  */
 
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -16,7 +17,7 @@ public class ConfessionPost {
     private String postID;
     private static int ID=0;
     private String content;
-    private Date postTime;
+    private LocalDate postTime;
     
     public ConfessionPost(){
     }
@@ -28,7 +29,21 @@ public class ConfessionPost {
     public ConfessionPost(String postID, String content) {                      
         this.postID = postID;
         this.content = content;
-        this.postTime = new Date();
+        this.postTime = LocalDate.now();
+    }
+    
+    /**
+     * Creates an instance of Confession Post.
+     * @param postID    Confession Post ID is unique
+     * @param content   The content of a Confession Post
+     */
+    public ConfessionPost(String postID, String content, String postTime) {                      
+        this.postID = postID;
+        this.content = content;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        //convert String to LocalDate
+        LocalDate time = LocalDate.parse(postTime, formatter);
+        this.postTime = time;
     }
     
     /**
@@ -40,7 +55,7 @@ public class ConfessionPost {
         String newID = generateID();
         this.postID = newID;
         this.content = content;
-        this.postTime = new Date();
+        this.postTime = LocalDate.now();
         return newID;
     }
     
@@ -69,6 +84,18 @@ public class ConfessionPost {
     }
     
     /**
+     * New Method
+     * @param content is set to new
+     * @param postID is set to new
+     * @param postTime is set to new
+     */
+    public void setPost(String content, String postID, LocalDate postTime) {
+        this.content = content;
+        this.postID = postID;
+        this.postTime = postTime;
+    }
+    
+    /**
      * Creates a unique Confession Post ID.
      * This method generate an ID by checking the data class.
      * If a post ID already taken, it will increase counter by 1 until
@@ -89,7 +116,7 @@ public class ConfessionPost {
      * @return          true, if newly generated post ID is not found in the data class
      */
     public Boolean checkAvailableID(String postID){
-        Data data = new Data();
+        Load data = new Load();
         return data.searchData(postID)==null;
     }
     
@@ -107,6 +134,9 @@ public class ConfessionPost {
         return data.postID.equals(id);
     }
     
-    
+    public int getLevel(String id){
+        Load data = new Load();
+        return data.searchData(id).getLevel();
+    }
     
 }

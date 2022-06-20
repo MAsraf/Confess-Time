@@ -14,6 +14,14 @@ public class GenericQueue<E> {
   public int getSize() {
     return list.size();
   }
+  
+  public E peek(){
+        return (E) list.getFirst();
+    }
+  
+  public Boolean isEmpty(){
+      return getSize()==0;
+  }
 
   @Override
   public String toString() {

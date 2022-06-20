@@ -11,7 +11,7 @@ import java.util.Scanner;
  * @author asraf
  */
 public class Tester2 {      //View Published Confession Posts
-    static Data data = new Data();
+    static Load data = new Load();
     static DoublyLinkedList<ConfessionPost> list = assignList(data.tree);
     static GenericStack<DoublyLinkedList> stackList = new GenericStack<>();
     static GenericStack<String> stackCurrent = new GenericStack<>();
@@ -25,6 +25,7 @@ public class Tester2 {      //View Published Confession Posts
         String key="";
         while(!key.equalsIgnoreCase("Q")){
             String id="";
+            
             if(tmp!=null){
             System.out.println("===============================================================");
             System.out.println("#"+tmp.getID());
@@ -34,7 +35,9 @@ public class Tester2 {      //View Published Confession Posts
             }else{
                 System.out.println("no replies here");
             }
-            getOption();
+            if(id!=null){
+            getOption(id);
+            }
             key = in.next();
             if(key.equalsIgnoreCase("D")){  //view next post
                 list.nextPost();
@@ -51,10 +54,13 @@ public class Tester2 {      //View Published Confession Posts
             }else if(key.equalsIgnoreCase("W")){
                 key="Q";
                 DoublyLinkedList<ConfessionPost> replyList;
+                String current;
+                if(!stackList.isEmpty()&&!stackCurrent.isEmpty()){
                 replyList = stackList.pop();
-                String current = stackCurrent.pop();
+                current = stackCurrent.pop();
                 replyList = sort(replyList,current);
                 showPost(replyList);
+                }
             }else if(key.equalsIgnoreCase("S")){                                      //view posts that are replying to this post
                 key="Q";
                 stackList.push(list);
@@ -62,7 +68,8 @@ public class Tester2 {      //View Published Confession Posts
                 DoublyLinkedList<ConfessionPost> replyList = new DoublyLinkedList<>();
                 searchBelowPost(replyList, id);
                 showPost(replyList);
-            }else if(key.equalsIgnoreCase("Q")){
+            }
+            else if(key.equalsIgnoreCase("Q")){
                 tmp = null;
             }
         }
@@ -93,12 +100,22 @@ public class Tester2 {      //View Published Confession Posts
         return newList;
     }
     
-    public static void getOption(){
+    public static void getOption(String postID){
+        Load info = new Load();
+        
         System.out.println("===============================================================");
         System.out.println(">> Options:");
         System.out.println(">> \"D\" - view next post");
         System.out.println(">> \"A\" - view previous post");
-        System.out.println(">> \"W\" - view #UM03291");  //why want to view the post when the program is showing it???
+        if(data.searchData(postID).parent!=null){
+            if(!data.searchData(postID).parent.data.getID().equals("UM00")){
+            System.out.println(">> \"W\" - view #"+info.searchData(postID).parent.data.getID());
+            }else{
+                System.out.println(">> \"W\" - Nothing up here");
+            }
+        }else{
+            System.out.println(">> \"W\" - Go up");
+        }
         System.out.println(">> \"S\" - view posts that are replying to this post");
         System.out.println(">> \"Q\" - quit viewing post");
         System.out.println("---------------------------------------------------------------");
@@ -158,5 +175,6 @@ public class Tester2 {      //View Published Confession Posts
         }
         return postList;
     }
+    
     
 }

@@ -11,7 +11,7 @@ package Test;
 public class Data {
     
         ConfessionPost post;
-        ReplyNode<ConfessionPost> tree = getTree();                             //Sample data using tree data structure
+        ReplyNode<ConfessionPost> tree = getTree();
         
         public Data(){
             
@@ -45,6 +45,37 @@ public class Data {
         return null;
         }
         
+        public  GenericQueue<ReplyNode> searchDataByDate(String input){   
+            GenericQueue<ReplyNode> queue = new GenericQueue<>();
+
+            for (ReplyNode<ConfessionPost> node : tree){
+            if(node.data.getTime().contains(input)){
+                queue.enqueue(node);
+            }
+            }
+        return queue;
+        }
+        
+        public  ReplyNode searchDataByPostID(String input){  
+            for (ReplyNode<ConfessionPost> node : tree){
+            if(node.data.getID().contains(input)){
+                return node;
+            }
+            }
+        return null;
+        }
+        
+        public  GenericQueue<ReplyNode> searchDataByKeyword(String input){   
+            GenericQueue<ReplyNode> queue = new GenericQueue<>();
+
+            for (ReplyNode<ConfessionPost> node : tree){
+            if(node.data.getContent().contains(input)){
+                queue.enqueue(node);
+            }
+            }
+        return queue;
+        }
+        
         /**
          * Returns this tree data structure.
          * This method is just a sample data.
@@ -52,7 +83,7 @@ public class Data {
          */
         public static ReplyNode<ConfessionPost> getTree(){
             ConfessionPost defaultPost = new ConfessionPost("UM00","Root");
-            ConfessionPost post01 = new ConfessionPost("UM01","test1");
+            ConfessionPost post01 = new ConfessionPost("UM01","Anyone knows the assignment topic for the subtraction");
             ConfessionPost post02 = new ConfessionPost("UM02","replies-01");
             ConfessionPost post03 = new ConfessionPost("UM03","replies-01");
             ConfessionPost post04 = new ConfessionPost("UM04","replies-03");
@@ -69,7 +100,11 @@ public class Data {
             ConfessionPost post07 = new ConfessionPost("UM07","replies-05");
             ConfessionPost post08 = new ConfessionPost("UM08","replies-06");
             ConfessionPost post09 = new ConfessionPost("UM09","replies-08");
+            ConfessionPost post10 = new ConfessionPost("UM10","replies-05");
+            ConfessionPost post11 = new ConfessionPost("UM11","replies-05");
             newPublishedPost = tree.addChild(post05);                           //Add a child object(new published confession post) to the root.
+            newPublishedPost.addChild(post10);                                  //Add a child object(new reply confession post) to the second published confession post.
+            newPublishedPost.addChild(post11);
             newReplyPost = newPublishedPost.addChild(post06);                   //Add a child object(new reply confession post) to the second published confession post.
             newPublishedPost.addChild(post07);                                  //Add a child object(new reply confession post) to the second published confession post.
             newReplyPost = newReplyPost.addChild(post08);                       //Add a child object(new reply confession post) to the first reply confession post(post06). 

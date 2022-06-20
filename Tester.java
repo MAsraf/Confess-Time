@@ -9,7 +9,7 @@ import java.util.Scanner;
  * @author asraf
  */
 public class Tester {   //Submit Connfession Post
-   static Data data = new Data();
+   static Load data = new Load();
     public static void main(String[] args) {
         intro();
     }
