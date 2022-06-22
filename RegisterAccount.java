@@ -54,7 +54,7 @@ public class RegisterAccount {
         FileWriter fileName = new FileWriter("AccountList.txt",true);
         // Creates a BufferedWriter
         BufferedWriter  bw = new BufferedWriter(fileName);
-                bw.append(acc.toString()+"\n");
+                bw.append("\n"+acc.toString());
         bw.close();
     }catch(Exception e){
         System.out.print("An error occured try again ");
